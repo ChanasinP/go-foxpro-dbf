@@ -35,6 +35,22 @@ func (d *Win1250Decoder) Decode(in []byte) ([]byte, error) {
 	return data, nil
 }
 
+// Win875Decoder translates a Windows-875 DBF to UTF8
+type Win875Decoder struct{}
+
+// Decode decodes a Windows875 byte slice to a UTF8 byte slice
+func (d *Win875Decoder) Decode(in []byte) ([]byte, error) {
+	if utf8.Valid(in) {
+		return in, nil
+	}
+	r := transform.NewReader(bytes.NewReader(in), charmap.Windows874.NewDecoder())
+	data, err := ioutil.ReadAll(r)
+	if err != nil {
+		return nil, err
+	}
+	return data, nil
+}
+
 // UTF8Decoder assumes your DBF is in UTF8 so it does nothing
 type UTF8Decoder struct{}
 
