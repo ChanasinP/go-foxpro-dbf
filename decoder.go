@@ -35,11 +35,11 @@ func (d *Win1250Decoder) Decode(in []byte) ([]byte, error) {
 	return data, nil
 }
 
-// Win875Decoder translates a Windows-875 DBF to UTF8
-type Win875Decoder struct{}
+// Win874Decoder translates a Windows-874 DBF to UTF8
+type Win874Decoder struct{}
 
-// Decode decodes a Windows875 byte slice to a UTF8 byte slice
-func (d *Win875Decoder) Decode(in []byte) ([]byte, error) {
+// Decode decodes a Windows874 byte slice to a UTF8 byte slice
+func (d *Win874Decoder) Decode(in []byte) ([]byte, error) {
 	if utf8.Valid(in) {
 		return in, nil
 	}
